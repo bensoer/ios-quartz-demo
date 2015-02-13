@@ -12,7 +12,7 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="quartz2DView" customModule="quartz2D">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -25,12 +25,32 @@
                                     <segment title="Green"/>
                                     <segment title="Random"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeColor:" destination="vXZ-lx-hvc" eventType="valueChanged" id="W6G-kS-3ur"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="FmW-DD-pQA">
+                                <rect key="frame" x="176" y="532" width="248" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="248" id="qkx-J9-9ZT"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Line"/>
+                                    <segment title="Rect"/>
+                                    <segment title="Ellipse"/>
+                                    <segment title="Image"/>
+                                </segments>
+                                <connections>
+                                    <action selector="changeShape:" destination="vXZ-lx-hvc" eventType="valueChanged" id="Xys-v0-H1v"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="FmW-DD-pQA" secondAttribute="bottom" constant="40" id="AE4-jq-3O4"/>
                             <constraint firstItem="SRJ-eN-avj" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="nl2-fB-1IN"/>
                             <constraint firstItem="SRJ-eN-avj" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="qJY-k9-RCA"/>
+                            <constraint firstItem="FmW-DD-pQA" firstAttribute="centerX" secondItem="SRJ-eN-avj" secondAttribute="centerX" id="yVD-jh-grD"/>
                         </constraints>
                     </view>
                     <connections>

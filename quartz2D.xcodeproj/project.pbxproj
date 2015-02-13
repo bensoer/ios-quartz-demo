@@ -13,7 +13,7 @@
 		10576D2E1A8C7538000E22F7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10576D2D1A8C7538000E22F7 /* Images.xcassets */; };
 		10576D311A8C7538000E22F7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10576D2F1A8C7538000E22F7 /* LaunchScreen.xib */; };
 		10576D3D1A8C7538000E22F7 /* quartz2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10576D3C1A8C7538000E22F7 /* quartz2DTests.swift */; };
-		10576D471A8C758F000E22F7 /* quartz2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10576D461A8C758F000E22F7 /* quartz2DView.swift */; };
+		10576D491A8DC5AE000E22F7 /* quartz2DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10576D481A8DC5AE000E22F7 /* quartz2DView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		10576D361A8C7538000E22F7 /* quartz2DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = quartz2DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10576D3B1A8C7538000E22F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10576D3C1A8C7538000E22F7 /* quartz2DTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quartz2DTests.swift; sourceTree = "<group>"; };
-		10576D461A8C758F000E22F7 /* quartz2DView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quartz2DView.swift; sourceTree = SOURCE_ROOT; };
+		10576D481A8DC5AE000E22F7 /* quartz2DView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quartz2DView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 		10576D231A8C7538000E22F7 /* quartz2D */ = {
 			isa = PBXGroup;
 			children = (
-				10576D461A8C758F000E22F7 /* quartz2DView.swift */,
+				10576D481A8DC5AE000E22F7 /* quartz2DView.swift */,
 				10576D261A8C7538000E22F7 /* AppDelegate.swift */,
 				10576D281A8C7538000E22F7 /* ViewController.swift */,
 				10576D2A1A8C7538000E22F7 /* Main.storyboard */,
@@ -217,7 +217,7 @@
 			files = (
 				10576D291A8C7538000E22F7 /* ViewController.swift in Sources */,
 				10576D271A8C7538000E22F7 /* AppDelegate.swift in Sources */,
-				10576D471A8C758F000E22F7 /* quartz2DView.swift in Sources */,
+				10576D491A8DC5AE000E22F7 /* quartz2DView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +409,7 @@
 				10576D421A8C7538000E22F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		10576D431A8C7538000E22F7 /* Build configuration list for PBXNativeTarget "quartz2DTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +418,7 @@
 				10576D451A8C7538000E22F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
