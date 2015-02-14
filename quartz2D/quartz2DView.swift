@@ -28,16 +28,31 @@ enum DrawingColor: UInt{
 }
 
 class quartz2DView: UIView {
+
+    required init(coder aDecoder: NSCoder) {
+        //fatalError("init(coder:) has not been implemented")
+        self.newDrawing = Drawing(shape,currentColor);
+        super.init(coder: aDecoder);
+        
+    }
+    
     //Application-settable properties
     var shape = Shape.Line;
     var currentColor = UIColor.redColor();
     var useRandomColor = false;
+    
+    var drawings = [Drawing]();
+    var newDrawing:Drawing;
     
     //Internal Properties
     //private let image = UIImage(named: "iphone")!;
     private var firstTouchLocation:CGPoint = CGPointZero;
     private var lastTouchLocation:CGPoint = CGPointZero;
 
+    internal func clearDrawings(){
+        drawings.removeAll();
+        setNeedsDisplay();
+    }
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent){
         if useRandomColor {
             currentColor = UIColor.randomColor();
@@ -45,18 +60,38 @@ class quartz2DView: UIView {
         let touch = touches.anyObject() as UITouch;
         firstTouchLocation = touch.locationInView(self);
         lastTouchLocation = firstTouchLocation;
+        
+        newDrawing = Drawing(shape, currentColor);
+        newDrawing.firstTouchLocation = firstTouchLocation;
+        newDrawing.lastTouchLocation = lastTouchLocation;
+        newDrawing.color = currentColor;
+        drawings.append(newDrawing);
+        
         setNeedsDisplay();
     }
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent){
         let touch = touches.anyObject() as UITouch;
         lastTouchLocation = touch.locationInView(self);
+        
+        newDrawing = drawings.removeLast();
+        
+        newDrawing.lastTouchLocation = lastTouchLocation;
+        drawings.append(newDrawing);
+        
         setNeedsDisplay();
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent){
         let touch = touches.anyObject() as UITouch;
         lastTouchLocation = touch.locationInView(self);
+        
+        var newDrawing = Drawing(shape, currentColor);
+        newDrawing.firstTouchLocation = firstTouchLocation;
+        newDrawing.lastTouchLocation = lastTouchLocation;
+        newDrawing.color = currentColor;
+        drawings.append(newDrawing);
+        
         setNeedsDisplay();
     }
     
@@ -68,27 +103,33 @@ class quartz2DView: UIView {
     override func drawRect(rect: CGRect) {
         let context = UIGraphicsGetCurrentContext();
         CGContextSetLineWidth(context, 2.0);
-        CGContextSetStrokeColorWithColor(context, currentColor.CGColor);
-        CGContextSetFillColorWithColor(context, currentColor.CGColor);
-        
-        let currentRect = CGRectMake(firstTouchLocation.x, firstTouchLocation.y,
-            lastTouchLocation.x - firstTouchLocation.x, lastTouchLocation.y - firstTouchLocation.y);
         
         
-        switch shape {
-        case .Line:
-            CGContextMoveToPoint(context, firstTouchLocation.x, firstTouchLocation.y);
-            CGContextAddLineToPoint(context, lastTouchLocation.x, lastTouchLocation.y);
-            CGContextStrokePath(context);
-        case .Rect:
-            CGContextAddRect(context, currentRect);
-            CGContextDrawPath(context, kCGPathFillStroke);
-        case .Ellipse:
-            CGContextAddEllipseInRect(context, currentRect);
-            CGContextDrawPath(context, kCGPathFillStroke);
-        case .Image:
-            break;
+        for drawnShape in drawings{
+            
+            CGContextSetStrokeColorWithColor(context, drawnShape.color.CGColor);
+            CGContextSetFillColorWithColor(context, drawnShape.color.CGColor);
+            
+            let currentRect = CGRectMake(drawnShape.firstTouchLocation.x, drawnShape.firstTouchLocation.y,
+                drawnShape.lastTouchLocation.x - drawnShape.firstTouchLocation.x, drawnShape.lastTouchLocation.y - drawnShape.firstTouchLocation.y);
+            
+            
+            switch drawnShape.shape {
+            case .Line:
+                CGContextMoveToPoint(context, drawnShape.firstTouchLocation.x, drawnShape.firstTouchLocation.y);
+                CGContextAddLineToPoint(context, drawnShape.lastTouchLocation.x, drawnShape.lastTouchLocation.y);
+                CGContextStrokePath(context);
+            case .Rect:
+                CGContextAddRect(context, currentRect);
+                CGContextDrawPath(context, kCGPathFillStroke);
+            case .Ellipse:
+                CGContextAddEllipseInRect(context, currentRect);
+                CGContextDrawPath(context, kCGPathFillStroke);
+            case .Image:
+                break;
+            }
         }
+        
     }
     
 

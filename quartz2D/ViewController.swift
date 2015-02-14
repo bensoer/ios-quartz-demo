@@ -22,6 +22,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func clearDrawing(sender: AnyObject) {
+        let quartz2DView = view as quartz2D.quartz2DView;
+        quartz2DView.clearDrawings();
+        
+    }
+    
     @IBAction func changeColor(sender: UISegmentedControl) {
         let drawingColorSelection = DrawingColor(rawValue: UInt(sender.selectedSegmentIndex));
         if let drawingColor = drawingColorSelection{

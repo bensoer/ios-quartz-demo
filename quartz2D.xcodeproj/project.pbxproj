@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		105697C41A8F1E140002EF21 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105697C31A8F1E140002EF21 /* Drawing.swift */; };
 		10576D271A8C7538000E22F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10576D261A8C7538000E22F7 /* AppDelegate.swift */; };
 		10576D291A8C7538000E22F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10576D281A8C7538000E22F7 /* ViewController.swift */; };
 		10576D2C1A8C7538000E22F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10576D2A1A8C7538000E22F7 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		105697C31A8F1E140002EF21 /* Drawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		10576D211A8C7538000E22F7 /* quartz2D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = quartz2D.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10576D251A8C7538000E22F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		10576D261A8C7538000E22F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				10576D2D1A8C7538000E22F7 /* Images.xcassets */,
 				10576D2F1A8C7538000E22F7 /* LaunchScreen.xib */,
 				10576D241A8C7538000E22F7 /* Supporting Files */,
+				105697C31A8F1E140002EF21 /* Drawing.swift */,
 			);
 			path = quartz2D;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				105697C41A8F1E140002EF21 /* Drawing.swift in Sources */,
 				10576D291A8C7538000E22F7 /* ViewController.swift in Sources */,
 				10576D271A8C7538000E22F7 /* AppDelegate.swift in Sources */,
 				10576D491A8DC5AE000E22F7 /* quartz2DView.swift in Sources */,
