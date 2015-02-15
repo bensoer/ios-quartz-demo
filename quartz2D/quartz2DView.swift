@@ -30,7 +30,6 @@ enum DrawingColor: UInt{
 class quartz2DView: UIView {
 
     required init(coder aDecoder: NSCoder) {
-        //fatalError("init(coder:) has not been implemented")
         self.newDrawing = Drawing(shape,currentColor);
         super.init(coder: aDecoder);
         
@@ -44,27 +43,27 @@ class quartz2DView: UIView {
     var drawings = [Drawing]();
     var newDrawing:Drawing;
     
-    //Internal Properties
-    //private let image = UIImage(named: "iphone")!;
-    private var firstTouchLocation:CGPoint = CGPointZero;
-    private var lastTouchLocation:CGPoint = CGPointZero;
-
+    //clear all drawings on the view
     internal func clearDrawings(){
         drawings.removeAll();
         setNeedsDisplay();
     }
+    
+    
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent){
-        if useRandomColor {
+        //if random color selected, generate new random color
+        if (useRandomColor) {
             currentColor = UIColor.randomColor();
         }
-        let touch = touches.anyObject() as UITouch;
-        firstTouchLocation = touch.locationInView(self);
-        lastTouchLocation = firstTouchLocation;
         
+        let touch = touches.anyObject() as UITouch;
+        
+        //create new drawing object
         newDrawing = Drawing(shape, currentColor);
-        newDrawing.firstTouchLocation = firstTouchLocation;
-        newDrawing.lastTouchLocation = lastTouchLocation;
+        newDrawing.firstTouchLocation = touch.locationInView(self);
+        newDrawing.lastTouchLocation = newDrawing.firstTouchLocation;
         newDrawing.color = currentColor;
+        //add to array of drawings
         drawings.append(newDrawing);
         
         setNeedsDisplay();
@@ -72,11 +71,11 @@ class quartz2DView: UIView {
     
     override func touchesMoved(touches: NSSet, withEvent event: UIEvent){
         let touch = touches.anyObject() as UITouch;
-        lastTouchLocation = touch.locationInView(self);
-        
+       
+        //get last drawings (its the one we worked on last)
         newDrawing = drawings.removeLast();
-        
-        newDrawing.lastTouchLocation = lastTouchLocation;
+        //update it and put it back in the array
+        newDrawing.lastTouchLocation = touch.locationInView(self);
         drawings.append(newDrawing);
         
         setNeedsDisplay();
@@ -84,11 +83,11 @@ class quartz2DView: UIView {
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent){
         let touch = touches.anyObject() as UITouch;
-        lastTouchLocation = touch.locationInView(self);
         
-        var newDrawing = Drawing(shape, currentColor);
-        newDrawing.firstTouchLocation = firstTouchLocation;
-        newDrawing.lastTouchLocation = lastTouchLocation;
+        //get last drawing (its the one we worked on last)
+        newDrawing = drawings.removeLast();
+        //update it and put it back in the array
+        newDrawing.lastTouchLocation = touch.locationInView(self);
         newDrawing.color = currentColor;
         drawings.append(newDrawing);
         
@@ -104,7 +103,7 @@ class quartz2DView: UIView {
         let context = UIGraphicsGetCurrentContext();
         CGContextSetLineWidth(context, 2.0);
         
-        
+        //draw every drawings in the array of drawings we previously made
         for drawnShape in drawings{
             
             CGContextSetStrokeColorWithColor(context, drawnShape.color.CGColor);
